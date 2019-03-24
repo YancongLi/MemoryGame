@@ -17,7 +17,8 @@ body {
 }
 
 body {
-    background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
+    background: #ffffff url('../img/geometry2.png');
+    /* Background pattern from Subtle Patterns */
     font-family: 'Coda', cursive;
 }
 
@@ -107,3 +108,123 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+/* From: https://sabe.io/tutorials/how-to-create-modal-popup-box */
+.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.1);
+    transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 1rem 1.5rem;
+    width: 24rem;
+    border-radius: 0.5rem;
+}
+
+.close-button {
+    float: right;
+    width: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    background-color: lightgray;
+}
+
+.close-button:hover {
+    background-color: darkgray;
+}
+
+.show-modal {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1.0);
+    transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+/* responsive: */
+
+.modal-content {
+    max-width: 80%;
+    max-height: 80%;
+    font-size: 0.8em;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    header h1 {
+        font-size: 1.2em;
+        font-weight: bold;
+    }
+
+    .score-panel {
+        width: 220px;
+        font-size: 14px;
+    }
+
+    .deck {
+        width: 290px;
+        min-height: 320px;
+        padding: 10px;
+    }
+
+    .deck .card {
+        width: 60px;
+        height: 60px;
+    }
+
+    .deck .card.show,
+    .deck .card.match {
+        font-size: 18px;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .deck {
+        width: 360px;
+        min-height: 360px;
+    }
+
+    .deck .card {
+        width: 65px;
+        height: 65px;
+    }
+
+    .deck .card.show,
+    .deck .card.match {
+        font-size: 23px;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .deck {
+        width: 500px;
+        min-height: 500px;
+    }
+
+    .deck .card {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {}
