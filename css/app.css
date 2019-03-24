@@ -228,3 +228,26 @@ h1 {
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {}
+
+/* iPhone X */
+@media only screen and (device-width : 375px) and (device-height : 812px) and (-webkit-device-pixel-ratio : 3) {
+    header h1 {
+        font-size: 3.5em;
+        font-weight: bold;
+    }
+
+    .score-panel {
+        width: 80%;
+        font-size: 2.5em;
+    }
+
+    .deck {
+        width: 900px;
+        min-height: 900px;
+    }
+
+    .deck .card {
+        width: 190px;
+        height: 190px;
+    }
+}
