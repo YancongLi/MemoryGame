@@ -140,8 +140,6 @@ function displayCardSymbol() {
     stars.removeChild(stars.childNodes[0]);
   } else if (moveCounter === 50) {
     stars.removeChild(stars.childNodes[0]);
-  } else if (moveCounter >= 60) {
-    stars.innerHTML = "";
   }
 }
 
@@ -181,12 +179,28 @@ function displayFinalScore(score) {
   let starText = stars.childNodes.length > 1 ? " starts!" : " star!";
   startsContent.innerText = "You got " + stars.childNodes.length + starText;
   modelContent.appendChild(startsContent);
+  let restartContent = document.createElement("div");
+  restartContent.innerHTML = '<div class="restartInModal"><h1>Restart Game -> <i class="fa fa-repeat"></i></h1></div>';
+  modelContent.appendChild(restartContent);
   toggleModal();
+  addEventListenerToRestartBtnInModal();
+  firstClick = true;
+}
+
+function addEventListenerToRestartBtnInModal() {
+  let restartBtnInModal = document.querySelector(".restartInModal");
+  restartBtnInModal.addEventListener("click", startGame);
+  restartBtnInModal.addEventListener("click", () => {
+    modal.classList.remove("show-modal");
+  });
 }
 
 function addEventListenerToRestart() {
   let restartBtn = document.querySelector(".restart");
   restartBtn.addEventListener("click", startGame);
+  restartBtn.addEventListener("click", () => {
+    modal.classList.remove("show-modal");
+  });
 }
 
 function toggleModal() {
