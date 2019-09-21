@@ -198,7 +198,7 @@ function addScoreDetails(modelContent) {
   startsContent.innerText = "You got " + stars.childNodes.length + starText;
   scoreDetail.appendChild(startsContent);
   let restartContent = document.createElement("div");
-  restartContent.innerHTML = '<div class="restartInModal"><h1>Restart Game -> <i class="fa fa-repeat"></i></h1></div>';
+  restartContent.innerHTML = '<div class="restartInModal"><h1>Restart Game: <i class="fa fa-repeat"></i></h1></div>';
   scoreDetail.appendChild(restartContent);
 
   modelContent.appendChild(scoreDetail);
