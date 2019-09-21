@@ -15,6 +15,7 @@ let closeButton = document.querySelector(".close-button");
 closeButton.addEventListener("click", toggleModal);
 let minutesLabel = document.getElementById("minutes");
 let secondsLabel = document.getElementById("seconds");
+let timerInterval;
 
 addEventListenerToRestart();
 startGame();
@@ -30,6 +31,13 @@ function startGame() {
   firstClick = true;
   minutesLabel.innerHTML = "00";
   secondsLabel.innerHTML = "00";
+  let scoreDetail = document.getElementById("scoreDetails");
+  if (scoreDetail) {
+    document.querySelector(".modal-content").removeChild(scoreDetail);
+  }
+  if (timerInterval) {
+    clearInterval(timerInterval);
+  }
   add3Stars();
   displayMoveCounterOnPage(moveCounter);
   hideAllCards();
@@ -100,7 +108,7 @@ function displayCardSymbol() {
 
   if (firstClick) {
     firstClick = false;
-    setInterval(setTime, 1000);
+    timerInterval = setInterval(setTime, 1000);
   }
 
   if (cardElement.classList.contains("open")) {
@@ -172,19 +180,28 @@ function displayMoveCounterOnPage(score) {
 
 function displayFinalScore(score) {
   let modelContent = document.querySelector(".modal-content");
-  let timeContent = document.createElement("h1");
-  timeContent.innerText = "You took " + totalSeconds + " seconds to win!";
-  modelContent.appendChild(timeContent);
-  let startsContent = document.createElement("h1");
-  let starText = stars.childNodes.length > 1 ? " starts!" : " star!";
-  startsContent.innerText = "You got " + stars.childNodes.length + starText;
-  modelContent.appendChild(startsContent);
-  let restartContent = document.createElement("div");
-  restartContent.innerHTML = '<div class="restartInModal"><h1>Restart Game -> <i class="fa fa-repeat"></i></h1></div>';
-  modelContent.appendChild(restartContent);
+  addScoreDetails(modelContent);
   toggleModal();
   addEventListenerToRestartBtnInModal();
   firstClick = true;
+}
+
+function addScoreDetails(modelContent) {
+  let scoreDetail = document.createElement("div");
+  scoreDetail.setAttribute("id", "scoreDetails");
+
+  let timeContent = document.createElement("h1");
+  timeContent.innerText = "You took " + totalSeconds + " seconds to win!";
+  scoreDetail.appendChild(timeContent);
+  let startsContent = document.createElement("h1");
+  let starText = stars.childNodes.length > 1 ? " starts!" : " star!";
+  startsContent.innerText = "You got " + stars.childNodes.length + starText;
+  scoreDetail.appendChild(startsContent);
+  let restartContent = document.createElement("div");
+  restartContent.innerHTML = '<div class="restartInModal"><h1>Restart Game -> <i class="fa fa-repeat"></i></h1></div>';
+  scoreDetail.appendChild(restartContent);
+
+  modelContent.appendChild(scoreDetail);
 }
 
 function addEventListenerToRestartBtnInModal() {
